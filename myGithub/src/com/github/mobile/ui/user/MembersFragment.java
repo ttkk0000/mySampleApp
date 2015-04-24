@@ -22,7 +22,7 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.github.kevinsawicki.wishlist.SingleTypeAdapter;
-import com.github.mobile.R.string;
+import com.github.mobile.R;
 import com.github.mobile.ThrowableLoader;
 import com.github.mobile.accounts.AccountUtils;
 import com.github.mobile.ui.ItemListFragment;
@@ -37,8 +37,7 @@ import org.eclipse.egit.github.core.service.OrganizationService;
 /**
  * Fragment to display the members of an org.
  */
-public class MembersFragment extends ItemListFragment<User> implements
-        OrganizationSelectionListener {
+public class MembersFragment extends ItemListFragment<User> {
 
     private User org;
 
@@ -56,20 +55,11 @@ public class MembersFragment extends ItemListFragment<User> implements
     }
 
     @Override
-    public void onDetach() {
-        OrganizationSelectionProvider selectionProvider = (OrganizationSelectionProvider) getActivity();
-        if (selectionProvider != null)
-            selectionProvider.removeListener(this);
-
-        super.onDetach();
-    }
-
-    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        org = ((OrganizationSelectionProvider) getActivity()).addListener(this);
+        org = (User) getArguments().getSerializable("org");
         if (org == null && savedInstanceState != null)
             org = (User) savedInstanceState.getSerializable(EXTRA_USER);
-        setEmptyText(string.no_members);
+        setEmptyText(R.string.no_members);
 
         super.onActivityCreated(savedInstanceState);
     }
@@ -93,15 +83,6 @@ public class MembersFragment extends ItemListFragment<User> implements
     }
 
     @Override
-    public void onOrganizationSelected(User organization) {
-        int previousOrgId = org != null ? org.getId() : -1;
-        org = organization;
-        // Only hard refresh if view already created and org is changing
-        if (previousOrgId != org.getId())
-            refreshWithProgress();
-    }
-
-    @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         User user = (User) l.getItemAtPosition(position);
         if (!AccountUtils.isUser(getActivity(), user))
@@ -110,6 +91,6 @@ public class MembersFragment extends ItemListFragment<User> implements
 
     @Override
     protected int getErrorMessage(Exception exception) {
-        return string.error_members_load;
+        return R.string.error_members_load;
     }
 }

@@ -21,30 +21,21 @@ import static com.github.mobile.Intents.EXTRA_PATH;
 import static com.github.mobile.Intents.EXTRA_REPOSITORY;
 import static com.github.mobile.util.PreferenceUtils.RENDER_MARKDOWN;
 import static com.github.mobile.util.PreferenceUtils.WRAP;
-
-import org.eclipse.egit.github.core.Blob;
-import org.eclipse.egit.github.core.IRepositoryIdProvider;
-import org.eclipse.egit.github.core.Repository;
-import org.eclipse.egit.github.core.util.EncodingUtils;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
+import android.support.v7.app.ActionBar;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.webkit.WebView;
 import android.widget.ProgressBar;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
 import com.github.kevinsawicki.wishlist.ViewUtils;
 import com.github.mobile.Intents.Builder;
-import com.github.mobile.R.id;
-import com.github.mobile.R.layout;
-import com.github.mobile.R.menu;
-import com.github.mobile.R.string;
+import com.github.mobile.R;
 import com.github.mobile.core.code.RefreshBlobTask;
 import com.github.mobile.core.commit.CommitUtils;
 import com.github.mobile.ui.BaseActivity;
@@ -58,11 +49,16 @@ import com.github.mobile.util.SourceEditor;
 import com.github.mobile.util.ToastUtils;
 import com.google.inject.Inject;
 
+import org.eclipse.egit.github.core.Blob;
+import org.eclipse.egit.github.core.IRepositoryIdProvider;
+import org.eclipse.egit.github.core.Repository;
+import org.eclipse.egit.github.core.util.EncodingUtils;
+
 /**
  * Activity to view a file on a branch
  */
 public class BranchFileViewActivity extends BaseActivity implements
-        LoaderCallbacks<CharSequence> {
+    LoaderCallbacks<CharSequence> {
 
     private static final String TAG = "BranchFileViewActivity";
 
@@ -80,7 +76,7 @@ public class BranchFileViewActivity extends BaseActivity implements
      * @return intent
      */
     public static Intent createIntent(Repository repository, String branch,
-            String file, String blobSha) {
+        String file, String blobSha) {
         Builder builder = new Builder("branch.file.VIEW");
         builder.repo(repository);
         builder.add(EXTRA_BASE, blobSha);
@@ -123,21 +119,25 @@ public class BranchFileViewActivity extends BaseActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(layout.commit_file_view);
+        setContentView(R.layout.commit_file_view);
 
         repo = getSerializableExtra(EXTRA_REPOSITORY);
         sha = getStringExtra(EXTRA_BASE);
         path = getStringExtra(EXTRA_PATH);
         branch = getStringExtra(EXTRA_HEAD);
 
-        loadingBar = finder.find(id.pb_loading);
-        codeView = finder.find(id.wv_code);
+        loadingBar = finder.find(R.id.pb_loading);
+        codeView = finder.find(R.id.wv_code);
+
+        codeView.getSettings().setBuiltInZoomControls(true);
 
         file = CommitUtils.getName(path);
         isMarkdownFile = MarkdownUtils.isMarkdown(file);
         editor = new SourceEditor(codeView);
         editor.setWrap(PreferenceUtils.getCodePreferences(this).getBoolean(
-                WRAP, false));
+            WRAP, false));
+
+        setSupportActionBar((android.support.v7.widget.Toolbar) findViewById(R.id.toolbar));
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(file);
@@ -149,23 +149,23 @@ public class BranchFileViewActivity extends BaseActivity implements
 
     @Override
     public boolean onCreateOptionsMenu(final Menu optionsMenu) {
-        getSupportMenuInflater().inflate(menu.file_view, optionsMenu);
+        getMenuInflater().inflate(R.menu.file_view, optionsMenu);
 
-        MenuItem wrapItem = optionsMenu.findItem(id.m_wrap);
+        MenuItem wrapItem = optionsMenu.findItem(R.id.m_wrap);
         if (PreferenceUtils.getCodePreferences(this).getBoolean(WRAP, false))
-            wrapItem.setTitle(string.disable_wrapping);
+            wrapItem.setTitle(R.string.disable_wrapping);
         else
-            wrapItem.setTitle(string.enable_wrapping);
+            wrapItem.setTitle(R.string.enable_wrapping);
 
-        markdownItem = optionsMenu.findItem(id.m_render_markdown);
+        markdownItem = optionsMenu.findItem(R.id.m_render_markdown);
         if (isMarkdownFile) {
             markdownItem.setEnabled(blob != null);
             markdownItem.setVisible(true);
             if (PreferenceUtils.getCodePreferences(this).getBoolean(
-                    RENDER_MARKDOWN, true))
-                markdownItem.setTitle(string.show_raw_markdown);
+                RENDER_MARKDOWN, true))
+                markdownItem.setTitle(R.string.show_raw_markdown);
             else
-                markdownItem.setTitle(string.render_markdown);
+                markdownItem.setTitle(R.string.render_markdown);
         }
 
         return true;
@@ -174,39 +174,39 @@ public class BranchFileViewActivity extends BaseActivity implements
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-        case id.m_wrap:
-            if (editor.getWrap())
-                item.setTitle(string.enable_wrapping);
-            else
-                item.setTitle(string.disable_wrapping);
-            editor.toggleWrap();
-            PreferenceUtils.save(PreferenceUtils.getCodePreferences(this)
-                    .edit().putBoolean(WRAP, editor.getWrap()));
-            return true;
-
-        case id.m_share:
-            shareFile();
-            return true;
-
-        case id.m_render_markdown:
-            if (editor.isMarkdown()) {
-                item.setTitle(string.render_markdown);
-                editor.toggleMarkdown();
-                editor.setSource(file, blob);
-            } else {
-                item.setTitle(string.show_raw_markdown);
-                editor.toggleMarkdown();
-                if (renderedMarkdown != null)
-                    editor.setSource(file, renderedMarkdown, false);
+            case R.id.m_wrap:
+                if (editor.getWrap())
+                    item.setTitle(R.string.enable_wrapping);
                 else
-                    loadMarkdown();
-            }
-            PreferenceUtils.save(PreferenceUtils.getCodePreferences(this)
-                    .edit().putBoolean(RENDER_MARKDOWN, editor.isMarkdown()));
-            return true;
+                    item.setTitle(R.string.disable_wrapping);
+                editor.toggleWrap();
+                PreferenceUtils.save(PreferenceUtils.getCodePreferences(this)
+                    .edit().putBoolean(WRAP, editor.getWrap()));
+                return true;
 
-        default:
-            return super.onOptionsItemSelected(item);
+            case R.id.m_share:
+                shareFile();
+                return true;
+
+            case R.id.m_render_markdown:
+                if (editor.isMarkdown()) {
+                    item.setTitle(R.string.render_markdown);
+                    editor.toggleMarkdown();
+                    editor.setSource(file, blob);
+                } else {
+                    item.setTitle(R.string.show_raw_markdown);
+                    editor.toggleMarkdown();
+                    if (renderedMarkdown != null)
+                        editor.setSource(file, renderedMarkdown, false);
+                    else
+                        loadMarkdown();
+                }
+                PreferenceUtils.save(PreferenceUtils.getCodePreferences(this)
+                    .edit().putBoolean(RENDER_MARKDOWN, editor.isMarkdown()));
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 
@@ -214,15 +214,15 @@ public class BranchFileViewActivity extends BaseActivity implements
     public Loader<CharSequence> onCreateLoader(int loader, Bundle args) {
         final String raw = args.getString(ARG_TEXT);
         final IRepositoryIdProvider repo = (IRepositoryIdProvider) args
-                .getSerializable(ARG_REPO);
+            .getSerializable(ARG_REPO);
         return new MarkdownLoader(this, repo, raw, imageGetter, false);
     }
 
     @Override
     public void onLoadFinished(Loader<CharSequence> loader,
-            CharSequence rendered) {
+        CharSequence rendered) {
         if (rendered == null)
-            ToastUtils.show(this, string.error_rendering_markdown);
+            ToastUtils.show(this, R.string.error_rendering_markdown);
 
         ViewUtils.setGone(loadingBar, true);
         ViewUtils.setGone(codeView, false);
@@ -242,7 +242,7 @@ public class BranchFileViewActivity extends BaseActivity implements
     private void shareFile() {
         String id = repo.generateId();
         startActivity(ShareUtils.create(path + " at " + branch + " on " + id,
-                "https://github.com/" + id + "/blob/" + branch + '/' + path));
+            "https://github.com/" + id + "/blob/" + branch + '/' + path));
     }
 
     private void loadMarkdown() {
@@ -250,7 +250,7 @@ public class BranchFileViewActivity extends BaseActivity implements
         ViewUtils.setGone(codeView, true);
 
         String markdown = new String(
-                EncodingUtils.fromBase64(blob.getContent()));
+            EncodingUtils.fromBase64(blob.getContent()));
         Bundle args = new Bundle();
         args.putCharSequence(ARG_TEXT, markdown);
         args.putSerializable(ARG_REPO, repo);
@@ -273,9 +273,9 @@ public class BranchFileViewActivity extends BaseActivity implements
                     markdownItem.setEnabled(true);
 
                 if (isMarkdownFile
-                        && PreferenceUtils.getCodePreferences(
-                                BranchFileViewActivity.this).getBoolean(
-                                RENDER_MARKDOWN, true))
+                    && PreferenceUtils.getCodePreferences(
+                    BranchFileViewActivity.this).getBoolean(
+                    RENDER_MARKDOWN, true))
                     loadMarkdown();
                 else {
                     ViewUtils.setGone(loadingBar, true);
@@ -294,7 +294,7 @@ public class BranchFileViewActivity extends BaseActivity implements
                 ViewUtils.setGone(loadingBar, true);
                 ViewUtils.setGone(codeView, false);
                 ToastUtils.show(BranchFileViewActivity.this, e,
-                        string.error_file_load);
+                    R.string.error_file_load);
             }
         }.execute();
     }

@@ -21,11 +21,11 @@ import static com.github.mobile.Intents.EXTRA_POSITION;
 import static com.github.mobile.Intents.EXTRA_REPOSITORY;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.text.TextUtils;
 
-import com.actionbarsherlock.app.ActionBar;
 import com.github.mobile.Intents.Builder;
-import com.github.mobile.R.string;
+import com.github.mobile.R;
 import com.github.mobile.core.commit.CommitUtils;
 import com.github.mobile.ui.comment.CommentPreviewPagerAdapter;
 
@@ -90,7 +90,7 @@ public class CreateCommentActivity extends
         super.onCreate(savedInstanceState);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle(getString(string.commit_prefix)
+        actionBar.setTitle(getString(R.string.commit_prefix)
                 + CommitUtils.abbreviate(commit));
         actionBar.setSubtitle(repository.generateId());
         avatars.bind(actionBar, repository.getOwner());

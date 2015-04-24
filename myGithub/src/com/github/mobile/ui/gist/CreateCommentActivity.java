@@ -18,10 +18,10 @@ package com.github.mobile.ui.gist;
 import static com.github.mobile.Intents.EXTRA_GIST;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 
-import com.actionbarsherlock.app.ActionBar;
 import com.github.mobile.Intents.Builder;
-import com.github.mobile.R.string;
+import com.github.mobile.R;
 
 import org.eclipse.egit.github.core.Comment;
 import org.eclipse.egit.github.core.Gist;
@@ -54,7 +54,7 @@ public class CreateCommentActivity extends
         gist = getSerializableExtra(EXTRA_GIST);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle(getString(string.gist_title) + gist.getId());
+        actionBar.setTitle(getString(R.string.gist_title) + gist.getId());
         User user = gist.getUser();
         if (user != null)
             actionBar.setSubtitle(user.getLogin());

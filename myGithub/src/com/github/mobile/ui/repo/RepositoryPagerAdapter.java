@@ -18,9 +18,9 @@ package com.github.mobile.ui.repo;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.github.mobile.R.string;
+import com.github.mobile.R;
 import com.github.mobile.ui.FragmentPagerAdapter;
 import com.github.mobile.ui.code.RepositoryCodeFragment;
 import com.github.mobile.ui.commit.CommitListFragment;
@@ -55,7 +55,7 @@ public class RepositoryPagerAdapter extends FragmentPagerAdapter {
      * @param activity
      * @param hasIssues
      */
-    public RepositoryPagerAdapter(SherlockFragmentActivity activity,
+    public RepositoryPagerAdapter(ActionBarActivity activity,
             boolean hasIssues) {
         super(activity);
 
@@ -67,13 +67,13 @@ public class RepositoryPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
         case 0:
-            return resources.getString(string.tab_news);
+            return resources.getString(R.string.tab_news);
         case 1:
-            return resources.getString(string.tab_code);
+            return resources.getString(R.string.tab_code);
         case 2:
-            return resources.getString(string.tab_commits);
+            return resources.getString(R.string.tab_commits);
         case 3:
-            return resources.getString(string.tab_issues);
+            return resources.getString(R.string.tab_issues);
         default:
             return null;
         }

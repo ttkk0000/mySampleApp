@@ -21,21 +21,22 @@ import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import static android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP;
 import static com.github.mobile.util.TypefaceUtils.ICON_PERSON;
 import static com.github.mobile.util.TypefaceUtils.ICON_PUBLIC;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.SearchView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ProgressBar;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
 import com.github.kevinsawicki.wishlist.ViewUtils;
-import com.github.mobile.R.id;
-import com.github.mobile.R.layout;
-import com.github.mobile.R.menu;
-import com.github.mobile.R.string;
+import com.github.mobile.R;
+import com.github.mobile.ui.MainActivity;
 import com.github.mobile.ui.TabPagerActivity;
-import com.github.mobile.ui.user.HomeActivity;
 import com.github.mobile.util.ToastUtils;
 
 /**
@@ -53,7 +54,7 @@ public class SearchActivity extends TabPagerActivity<SearchPagerAdapter> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        loadingBar = finder.find(id.pb_loading);
+        loadingBar = finder.find(R.id.pb_loading);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -64,22 +65,25 @@ public class SearchActivity extends TabPagerActivity<SearchPagerAdapter> {
 
     @Override
     public boolean onCreateOptionsMenu(Menu options) {
-        getSupportMenuInflater().inflate(menu.search, options);
+        getMenuInflater().inflate(R.menu.search, options);
+
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        MenuItem searchItem = options.findItem(R.id.m_search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case id.m_search:
-                onSearchRequested();
-                return true;
-            case id.m_clear:
+            case R.id.m_clear:
                 RepositorySearchSuggestionsProvider.clear(this);
-                ToastUtils.show(this, string.search_history_cleared);
+                ToastUtils.show(this, R.string.search_history_cleared);
                 return true;
             case android.R.id.home:
-                Intent intent = new Intent(this, HomeActivity.class);
+                Intent intent = new Intent(this, MainActivity.class);
                 intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP | FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 return true;
@@ -95,7 +99,7 @@ public class SearchActivity extends TabPagerActivity<SearchPagerAdapter> {
 
     @Override
     protected int getContentView() {
-        return layout.tabbed_progress_pager;
+        return R.layout.tabbed_progress_pager;
     }
 
     @Override
@@ -146,9 +150,9 @@ public class SearchActivity extends TabPagerActivity<SearchPagerAdapter> {
         if (repoFragment == null || userFragment == null) {
             FragmentManager fm = getSupportFragmentManager();
             repoFragment = (SearchRepositoryListFragment) fm.findFragmentByTag(
-                    "android:switcher:" + pager.getId() + ":" + 0);
+                "android:switcher:" + pager.getId() + ":" + 0);
             userFragment = (SearchUserListFragment) fm.findFragmentByTag(
-                    "android:switcher:" + pager.getId() + ":" + 1);
+                "android:switcher:" + pager.getId() + ":" + 1);
         }
     }
 }

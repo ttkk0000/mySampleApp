@@ -18,8 +18,10 @@ package com.github.mobile.ui.gist;
 import static com.github.mobile.Intents.EXTRA_GIST_ID;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
+import android.util.SparseArray;
+import android.view.ViewGroup;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.github.mobile.ui.FragmentStatePagerAdapter;
 
 /**
@@ -29,11 +31,13 @@ public class GistsPagerAdapter extends FragmentStatePagerAdapter {
 
     private final String[] ids;
 
+    private final SparseArray<GistFragment> fragments = new SparseArray<GistFragment>();
+
     /**
      * @param activity
      * @param gistIds
      */
-    public GistsPagerAdapter(SherlockFragmentActivity activity, String[] gistIds) {
+    public GistsPagerAdapter(ActionBarActivity activity, String[] gistIds) {
         super(activity);
 
         this.ids = gistIds;
@@ -51,5 +55,37 @@ public class GistsPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public int getCount() {
         return ids.length;
+    }
+
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+        super.destroyItem(container, position, object);
+
+        fragments.remove(position);
+    }
+
+    @Override
+    public Object instantiateItem(ViewGroup container, int position) {
+        Object fragment = super.instantiateItem(container, position);
+        if (fragment instanceof GistFragment)
+            fragments.put(position, (GistFragment) fragment);
+        return fragment;
+    }
+
+    /**
+     * Deliver dialog result to fragment at given position
+     *
+     * @param position
+     * @param requestCode
+     * @param resultCode
+     * @param arguments
+     * @return this adapter
+     */
+    public GistsPagerAdapter onDialogResult(int position, int requestCode,
+            int resultCode, Bundle arguments) {
+        GistFragment fragment = fragments.get(position);
+        if (fragment != null)
+            fragment.onDialogResult(requestCode, resultCode, arguments);
+        return this;
     }
 }

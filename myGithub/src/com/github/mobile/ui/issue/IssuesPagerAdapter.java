@@ -17,15 +17,16 @@ package com.github.mobile.ui.issue;
 
 import static com.github.mobile.Intents.EXTRA_ISSUE_NUMBER;
 import static com.github.mobile.Intents.EXTRA_IS_COLLABORATOR;
+import static com.github.mobile.Intents.EXTRA_IS_OWNER;
 import static com.github.mobile.Intents.EXTRA_REPOSITORY_NAME;
 import static com.github.mobile.Intents.EXTRA_REPOSITORY_OWNER;
 import static com.github.mobile.Intents.EXTRA_USER;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
 import android.util.SparseArray;
 import android.view.ViewGroup;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.github.mobile.core.issue.IssueStore;
 import com.github.mobile.ui.FragmentStatePagerAdapter;
 
@@ -54,6 +55,8 @@ public class IssuesPagerAdapter extends FragmentStatePagerAdapter {
 
     private boolean isCollaborator;
 
+    private boolean isOwner;
+
     /**
      * @param activity
      * @param repoIds
@@ -61,9 +64,9 @@ public class IssuesPagerAdapter extends FragmentStatePagerAdapter {
      * @param issueStore
      * @param collaborator
      */
-    public IssuesPagerAdapter(SherlockFragmentActivity activity,
+    public IssuesPagerAdapter(ActionBarActivity activity,
             List<RepositoryId> repoIds, int[] issueNumbers,
-            IssueStore issueStore, boolean collaborator) {
+            IssueStore issueStore, boolean collaborator, boolean owner) {
         super(activity);
 
         repos = repoIds;
@@ -71,6 +74,7 @@ public class IssuesPagerAdapter extends FragmentStatePagerAdapter {
         issues = issueNumbers;
         store = issueStore;
         isCollaborator = collaborator;
+        isOwner = owner;
     }
 
     /**
@@ -79,8 +83,9 @@ public class IssuesPagerAdapter extends FragmentStatePagerAdapter {
      * @param issueNumbers
      * @param collaborator
      */
-    public IssuesPagerAdapter(SherlockFragmentActivity activity,
-            Repository repository, int[] issueNumbers, boolean collaborator) {
+    public IssuesPagerAdapter(ActionBarActivity activity,
+            Repository repository, int[] issueNumbers,
+            boolean collaborator, boolean owner) {
         super(activity);
 
         repos = null;
@@ -88,6 +93,7 @@ public class IssuesPagerAdapter extends FragmentStatePagerAdapter {
         issues = issueNumbers;
         store = null;
         isCollaborator = collaborator;
+        isOwner = owner;
     }
 
     @Override
@@ -112,6 +118,7 @@ public class IssuesPagerAdapter extends FragmentStatePagerAdapter {
         }
         args.putInt(EXTRA_ISSUE_NUMBER, issues[position]);
         args.putBoolean(EXTRA_IS_COLLABORATOR, isCollaborator);
+        args.putBoolean(EXTRA_IS_OWNER, isOwner);
         fragment.setArguments(args);
         return fragment;
     }

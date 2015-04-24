@@ -21,15 +21,13 @@ import static com.github.mobile.Intents.EXTRA_GIST_ID;
 import static com.github.mobile.Intents.EXTRA_POSITION;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.view.MenuItem;
 import android.widget.ProgressBar;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.view.MenuItem;
 import com.github.kevinsawicki.wishlist.ViewUtils;
 import com.github.mobile.Intents.Builder;
-import com.github.mobile.R.id;
-import com.github.mobile.R.layout;
-import com.github.mobile.R.string;
+import com.github.mobile.R;
 import com.github.mobile.core.gist.FullGist;
 import com.github.mobile.core.gist.GistStore;
 import com.github.mobile.core.gist.RefreshGistTask;
@@ -58,7 +56,7 @@ public class GistFilesViewActivity extends PagerActivity {
      */
     public static Intent createIntent(Gist gist, int position) {
         return new Builder("gist.files.VIEW").gist(gist.getId())
-                .add(EXTRA_POSITION, position).toIntent();
+            .add(EXTRA_POSITION, position).toIntent();
     }
 
     private String gistId;
@@ -91,16 +89,18 @@ public class GistFilesViewActivity extends PagerActivity {
         gistId = getStringExtra(EXTRA_GIST_ID);
         initialPosition = getIntExtra(EXTRA_POSITION);
 
-        setContentView(layout.pager_with_title);
+        setContentView(R.layout.pager_with_title);
 
-        pager = finder.find(id.vp_pages);
-        loadingBar = finder.find(id.pb_loading);
-        indicator = finder.find(id.tpi_header);
+        setSupportActionBar((android.support.v7.widget.Toolbar) findViewById(R.id.toolbar));
+
+        pager = finder.find(R.id.vp_pages);
+        loadingBar = finder.find(R.id.pb_loading);
+        indicator = finder.find(R.id.tpi_header);
 
         if (initialPosition < 0)
             initialPosition = 0;
 
-        getSupportActionBar().setTitle(getString(string.gist_title) + gistId);
+        getSupportActionBar().setTitle(getString(R.string.gist_title) + gistId);
 
         gist = store.getGist(gistId);
         if (gist != null)
@@ -131,7 +131,7 @@ public class GistFilesViewActivity extends PagerActivity {
             actionBar.setSubtitle(author.getLogin());
             avatars.bind(actionBar, author);
         } else
-            actionBar.setSubtitle(string.anonymous);
+            actionBar.setSubtitle(R.string.anonymous);
 
         ViewUtils.setGone(loadingBar, true);
         ViewUtils.setGone(pager, false);
@@ -150,16 +150,16 @@ public class GistFilesViewActivity extends PagerActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-        case android.R.id.home:
-            if (gist != null) {
-                Intent intent = GistsViewActivity.createIntent(gist);
-                intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP
+            case android.R.id.home:
+                if (gist != null) {
+                    Intent intent = GistsViewActivity.createIntent(gist);
+                    intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP
                         | FLAG_ACTIVITY_SINGLE_TOP);
-                startActivity(intent);
-            }
-            return true;
-        default:
-            return super.onOptionsItemSelected(item);
+                    startActivity(intent);
+                }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 

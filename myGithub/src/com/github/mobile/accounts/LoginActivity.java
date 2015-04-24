@@ -27,11 +27,11 @@ import static android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD;
 import static android.view.KeyEvent.ACTION_DOWN;
 import static android.view.KeyEvent.KEYCODE_ENTER;
 import static android.view.inputmethod.EditorInfo.IME_ACTION_DONE;
-import static com.github.mobile.accounts.AccountConstants.*;
 import static com.github.mobile.RequestCodes.OTP_CODE_ENTER;
+import static com.github.mobile.accounts.AccountConstants.ACCOUNT_TYPE;
+import static com.github.mobile.accounts.AccountConstants.PROVIDER_AUTHORITY;
 import static com.github.mobile.accounts.TwoFactorAuthActivity.PARAM_EXCEPTION;
 import static com.github.mobile.accounts.TwoFactorAuthClient.TWO_FACTOR_AUTH_TYPE_SMS;
-
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.AlertDialog;
@@ -48,6 +48,8 @@ import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnKeyListener;
 import android.widget.ArrayAdapter;
@@ -59,18 +61,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
 import com.github.kevinsawicki.wishlist.ViewFinder;
-import com.github.mobile.R.id;
-import com.github.mobile.R.layout;
-import com.github.mobile.R.menu;
-import com.github.mobile.R.string;
+import com.github.mobile.R;
 import com.github.mobile.persistence.AccountDataManager;
 import com.github.mobile.ui.LightProgressDialog;
 import com.github.mobile.ui.TextWatcherAdapter;
+import com.github.mobile.ui.roboactivities.RoboActionBarAccountAuthenticatorActivity;
 import com.github.mobile.util.ToastUtils;
-import com.github.rtyley.android.sherlock.roboguice.activity.RoboSherlockAccountAuthenticatorActivity;
 import com.google.inject.Inject;
 
 import java.io.IOException;
@@ -87,7 +84,7 @@ import roboguice.util.RoboAsyncTask;
 /**
  * Activity to login
  */
-public class LoginActivity extends RoboSherlockAccountAuthenticatorActivity {
+public class LoginActivity extends RoboActionBarAccountAuthenticatorActivity {
 
     /**
      * Auth token type parameter
@@ -114,11 +111,11 @@ public class LoginActivity extends RoboSherlockAccountAuthenticatorActivity {
         ContentResolver.setIsSyncable(account, PROVIDER_AUTHORITY, 1);
         ContentResolver.setSyncAutomatically(account, PROVIDER_AUTHORITY, true);
         ContentResolver.addPeriodicSync(account, PROVIDER_AUTHORITY,
-                new Bundle(), SYNC_PERIOD);
+            new Bundle(), SYNC_PERIOD);
     }
 
     public static class AccountLoader extends
-            AuthenticatedUserTask<List<User>> {
+        AuthenticatedUserTask<List<User>> {
 
         @Inject
         private AccountDataManager cache;
@@ -164,24 +161,26 @@ public class LoginActivity extends RoboSherlockAccountAuthenticatorActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(layout.login);
+        setContentView(R.layout.login);
+
+        setSupportActionBar((android.support.v7.widget.Toolbar) findViewById(R.id.toolbar));
 
         accountManager = AccountManager.get(this);
 
         ViewFinder finder = new ViewFinder(this);
-        loginText = finder.find(id.et_login);
-        passwordText = finder.find(id.et_password);
+        loginText = finder.find(R.id.et_login);
+        passwordText = finder.find(R.id.et_password);
 
         final Intent intent = getIntent();
         username = intent.getStringExtra(PARAM_USERNAME);
         authTokenType = intent.getStringExtra(PARAM_AUTHTOKEN_TYPE);
         requestNewAccount = username == null;
         confirmCredentials = intent.getBooleanExtra(PARAM_CONFIRMCREDENTIALS,
-                false);
+            false);
 
-        TextView signupText = finder.find(id.tv_signup);
+        TextView signupText = finder.find(R.id.tv_signup);
         signupText.setMovementMethod(LinkMovementMethod.getInstance());
-        signupText.setText(Html.fromHtml(getString(string.signup_link)));
+        signupText.setText(Html.fromHtml(getString(R.string.signup_link)));
 
         if (!TextUtils.isEmpty(username)) {
             loginText.setText(username);
@@ -204,7 +203,7 @@ public class LoginActivity extends RoboSherlockAccountAuthenticatorActivity {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event != null && ACTION_DOWN == event.getAction()
-                        && keyCode == KEYCODE_ENTER && loginEnabled()) {
+                    && keyCode == KEYCODE_ENTER && loginEnabled()) {
                     handleLogin();
                     return true;
                 } else
@@ -216,7 +215,7 @@ public class LoginActivity extends RoboSherlockAccountAuthenticatorActivity {
 
             @Override
             public boolean onEditorAction(TextView v, int actionId,
-                    KeyEvent event) {
+                KeyEvent event) {
                 if (actionId == IME_ACTION_DONE && loginEnabled()) {
                     handleLogin();
                     return true;
@@ -225,12 +224,12 @@ public class LoginActivity extends RoboSherlockAccountAuthenticatorActivity {
             }
         });
 
-        CheckBox showPassword = finder.find(id.cb_show_password);
+        CheckBox showPassword = finder.find(R.id.cb_show_password);
         showPassword.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView,
-                    boolean isChecked) {
+                boolean isChecked) {
                 int type = TYPE_CLASS_TEXT;
                 if (isChecked)
                     type |= TYPE_TEXT_VARIATION_VISIBLE_PASSWORD;
@@ -243,9 +242,9 @@ public class LoginActivity extends RoboSherlockAccountAuthenticatorActivity {
             }
         });
 
-        loginText.setAdapter(new ArrayAdapter<String>(this,
-                android.R.layout.simple_dropdown_item_1line,
-                getEmailAddresses()));
+        loginText.setAdapter(new ArrayAdapter<>(this,
+            android.R.layout.simple_dropdown_item_1line,
+            getEmailAddresses()));
     }
 
     @Override
@@ -257,7 +256,7 @@ public class LoginActivity extends RoboSherlockAccountAuthenticatorActivity {
             Account existing = AccountUtils.getPasswordAccessibleAccount(this);
             if (existing != null && !TextUtils.isEmpty(existing.name)) {
                 String password = AccountManager.get(this)
-                        .getPassword(existing);
+                    .getPassword(existing);
                 if (!TextUtils.isEmpty(password))
                     finishLogin(existing.name, password);
             }
@@ -269,7 +268,7 @@ public class LoginActivity extends RoboSherlockAccountAuthenticatorActivity {
 
     private boolean loginEnabled() {
         return !TextUtils.isEmpty(loginText.getText())
-                && !TextUtils.isEmpty(passwordText.getText());
+            && !TextUtils.isEmpty(passwordText.getText());
     }
 
     private void updateEnablement() {
@@ -294,7 +293,7 @@ public class LoginActivity extends RoboSherlockAccountAuthenticatorActivity {
         password = passwordText.getText().toString();
 
         final AlertDialog dialog = LightProgressDialog.create(this,
-                string.login_activity_authenticating);
+            R.string.login_activity_authenticating);
         dialog.setCancelable(true);
         dialog.setOnCancelListener(new OnCancelListener() {
 
@@ -327,7 +326,7 @@ public class LoginActivity extends RoboSherlockAccountAuthenticatorActivity {
                 Account account = new Account(user.getLogin(), ACCOUNT_TYPE);
                 if (requestNewAccount) {
                     accountManager
-                            .addAccountExplicitly(account, password, null);
+                        .addAccountExplicitly(account, password, null);
                     configureSyncFor(account);
                     try {
                         new AccountLoader(LoginActivity.this).call();
@@ -428,35 +427,35 @@ public class LoginActivity extends RoboSherlockAccountAuthenticatorActivity {
                 finishConfirmCredentials(true);
         } else {
             if (requestNewAccount)
-                ToastUtils.show(this, string.invalid_login_or_password);
+                ToastUtils.show(this, R.string.invalid_login_or_password);
             else
-                ToastUtils.show(this, string.invalid_password);
+                ToastUtils.show(this, R.string.invalid_password);
         }
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-        case id.m_login:
-            handleLogin();
-            return true;
-        default:
-            return super.onOptionsItemSelected(item);
+            case R.id.m_login:
+                handleLogin();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
 
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu optionMenu) {
-        getSupportMenuInflater().inflate(menu.login, optionMenu);
-        loginItem = optionMenu.findItem(id.m_login);
+        getMenuInflater().inflate(R.menu.login, optionMenu);
+        loginItem = optionMenu.findItem(R.id.m_login);
         return true;
     }
 
     private List<String> getEmailAddresses() {
         final Account[] accounts = accountManager
-                .getAccountsByType("com.google");
-        final List<String> addresses = new ArrayList<String>(accounts.length);
+            .getAccountsByType("com.google");
+        final List<String> addresses = new ArrayList<>(accounts.length);
         for (Account account : accounts)
             addresses.add(account.name);
         return addresses;
@@ -478,6 +477,6 @@ public class LoginActivity extends RoboSherlockAccountAuthenticatorActivity {
         if (AccountUtils.isUnauthorized(e))
             onAuthenticationResult(false);
         else
-            ToastUtils.show(LoginActivity.this, e, string.connection_failed);
+            ToastUtils.show(LoginActivity.this, e, R.string.code_authentication_failed);
     }
 }

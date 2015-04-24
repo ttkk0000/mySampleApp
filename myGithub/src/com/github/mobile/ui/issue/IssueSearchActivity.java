@@ -21,20 +21,21 @@ import static android.content.Intent.ACTION_SEARCH;
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import static android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP;
 import static com.github.mobile.Intents.EXTRA_REPOSITORY;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.SearchView;
+import android.view.Menu;
+import android.view.MenuItem;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
-import com.github.mobile.R.id;
-import com.github.mobile.R.layout;
-import com.github.mobile.R.menu;
-import com.github.mobile.R.string;
+import com.github.mobile.R;
 import com.github.mobile.ui.repo.RepositoryViewActivity;
+import com.github.mobile.ui.roboactivities.RoboActionBarActivity;
 import com.github.mobile.util.AvatarLoader;
 import com.github.mobile.util.ToastUtils;
-import com.github.rtyley.android.sherlock.roboguice.activity.RoboSherlockFragmentActivity;
 import com.google.inject.Inject;
 
 import org.eclipse.egit.github.core.Repository;
@@ -42,7 +43,7 @@ import org.eclipse.egit.github.core.Repository;
 /**
  * Activity to search issues
  */
-public class IssueSearchActivity extends RoboSherlockFragmentActivity {
+public class IssueSearchActivity extends RoboActionBarActivity {
 
     @Inject
     private AvatarLoader avatars;
@@ -53,27 +54,33 @@ public class IssueSearchActivity extends RoboSherlockFragmentActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu options) {
-        getSupportMenuInflater().inflate(menu.search, options);
+        getMenuInflater().inflate(R.menu.search, options);
+
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        MenuItem searchItem = options.findItem(R.id.m_search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
+        Bundle args = new Bundle();
+        args.putSerializable(EXTRA_REPOSITORY, repository);
+        searchView.setAppSearchData(args);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-        case id.m_search:
-            onSearchRequested();
-            return true;
-        case id.m_clear:
-            IssueSearchSuggestionsProvider.clear(this);
-            ToastUtils.show(this, string.search_history_cleared);
-            return true;
-        case android.R.id.home:
-            Intent intent = RepositoryViewActivity.createIntent(repository);
-            intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP | FLAG_ACTIVITY_SINGLE_TOP);
-            startActivity(intent);
-            return true;
-        default:
-            return super.onOptionsItemSelected(item);
+            case R.id.m_clear:
+                IssueSearchSuggestionsProvider.clear(this);
+                ToastUtils.show(this, R.string.search_history_cleared);
+                return true;
+            case android.R.id.home:
+                Intent intent = RepositoryViewActivity.createIntent(repository);
+                intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP | FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 
@@ -81,7 +88,9 @@ public class IssueSearchActivity extends RoboSherlockFragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(layout.issue_search);
+        setContentView(R.layout.issue_search);
+
+        setSupportActionBar((android.support.v7.widget.Toolbar) findViewById(R.id.toolbar));
 
         ActionBar actionBar = getSupportActionBar();
         Bundle appData = getIntent().getBundleExtra(APP_DATA);
@@ -95,7 +104,7 @@ public class IssueSearchActivity extends RoboSherlockFragmentActivity {
         avatars.bind(actionBar, repository.getOwner());
 
         issueFragment = (SearchIssueListFragment) getSupportFragmentManager()
-                .findFragmentById(android.R.id.list);
+            .findFragmentById(android.R.id.list);
 
         handleIntent(getIntent());
     }

@@ -15,8 +15,11 @@
  */
 package com.github.mobile.ui.comment;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
+import android.support.v7.app.ActionBarActivity;
+
+import com.github.mobile.R;
 import com.github.mobile.ui.FragmentPagerAdapter;
 
 import org.eclipse.egit.github.core.IRepositoryIdProvider;
@@ -33,13 +36,20 @@ public class CommentPreviewPagerAdapter extends FragmentPagerAdapter {
     private RenderedCommentFragment htmlFragment;
 
     /**
+     * Text to populate comment window.
+     */
+    private String initComment;
+
+    private Context context;
+
+    /**
      * @param activity
      * @param repo
      */
-    public CommentPreviewPagerAdapter(SherlockFragmentActivity activity,
+    public CommentPreviewPagerAdapter(ActionBarActivity activity,
             IRepositoryIdProvider repo) {
         super(activity);
-
+        this.context = activity.getApplicationContext();
         this.repo = repo;
     }
 
@@ -48,6 +58,7 @@ public class CommentPreviewPagerAdapter extends FragmentPagerAdapter {
         switch (position) {
         case 0:
             textFragment = new RawCommentFragment();
+            textFragment.setText(initComment);
             return textFragment;
         case 1:
             htmlFragment = new RenderedCommentFragment();
@@ -72,6 +83,17 @@ public class CommentPreviewPagerAdapter extends FragmentPagerAdapter {
     }
 
     /**
+     * Set comment text
+     *
+     * @return text
+     */
+    public void setCommentText(String comment) {
+        if(textFragment != null)
+            textFragment.setText(comment);
+        initComment = comment;
+    }
+
+    /**
      * Set current item
      *
      * @param position
@@ -81,5 +103,17 @@ public class CommentPreviewPagerAdapter extends FragmentPagerAdapter {
         if (position == 1 && htmlFragment != null)
             htmlFragment.setText(getCommentText(), repo);
         return this;
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        switch (position) {
+            case 0:
+                return context.getResources().getString(R.string.write);
+            case 1:
+                return context.getResources().getString(R.string.preview);
+            default:
+                return "";
+        }
     }
 }

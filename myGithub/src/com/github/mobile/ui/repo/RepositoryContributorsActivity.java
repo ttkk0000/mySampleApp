@@ -20,12 +20,11 @@ import static android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP;
 import static com.github.mobile.Intents.EXTRA_REPOSITORY;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.view.MenuItem;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.view.MenuItem;
 import com.github.mobile.Intents;
-import com.github.mobile.R.string;
-import com.github.mobile.R.layout;
+import com.github.mobile.R;
 import com.github.mobile.ui.DialogFragmentActivity;
 import com.github.mobile.util.AvatarLoader;
 import com.google.inject.Inject;
@@ -57,13 +56,15 @@ public class RepositoryContributorsActivity extends DialogFragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(layout.repo_contributors);
+        setContentView(R.layout.repo_contributors);
 
         repository = getSerializableExtra(EXTRA_REPOSITORY);
 
+        setSupportActionBar((android.support.v7.widget.Toolbar) findViewById(R.id.toolbar));
+
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(repository.getName());
-        actionBar.setSubtitle(string.contributors);
+        actionBar.setSubtitle(R.string.contributors);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         User owner = repository.getOwner();

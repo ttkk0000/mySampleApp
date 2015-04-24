@@ -23,21 +23,19 @@ import static com.github.mobile.Intents.EXTRA_GIST_IDS;
 import static com.github.mobile.Intents.EXTRA_POSITION;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.view.MenuItem;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.view.MenuItem;
 import com.github.mobile.Intents.Builder;
-import com.github.mobile.R.drawable;
-import com.github.mobile.R.id;
-import com.github.mobile.R.layout;
-import com.github.mobile.R.string;
+import com.github.mobile.R;
 import com.github.mobile.core.OnLoadListener;
 import com.github.mobile.core.gist.GistStore;
 import com.github.mobile.ui.ConfirmDialogFragment;
 import com.github.mobile.ui.FragmentProvider;
+import com.github.mobile.ui.MainActivity;
 import com.github.mobile.ui.PagerActivity;
-import com.github.mobile.ui.UrlLauncher;
 import com.github.mobile.ui.ViewPager;
+import com.github.mobile.ui.user.UriLauncherActivity;
 import com.github.mobile.util.AvatarLoader;
 import com.google.inject.Inject;
 
@@ -50,7 +48,7 @@ import org.eclipse.egit.github.core.Gist;
  * Activity to display a collection of Gists in a pager
  */
 public class GistsViewActivity extends PagerActivity implements
-        OnLoadListener<Gist> {
+    OnLoadListener<Gist> {
 
     private static final int REQUEST_CONFIRM_DELETE = 1;
 
@@ -62,7 +60,7 @@ public class GistsViewActivity extends PagerActivity implements
      */
     public static Intent createIntent(Gist gist) {
         return new Builder("gists.VIEW").gist(gist).add(EXTRA_POSITION, 0)
-                .toIntent();
+            .toIntent();
     }
 
     /**
@@ -78,8 +76,8 @@ public class GistsViewActivity extends PagerActivity implements
         for (Gist gist : gists)
             ids[index++] = gist.getId();
         return new Builder("gists.VIEW")
-                .add(EXTRA_GIST_IDS, (Serializable) ids)
-                .add(EXTRA_POSITION, position).toIntent();
+            .add(EXTRA_GIST_IDS, (Serializable) ids)
+            .add(EXTRA_POSITION, position).toIntent();
     }
 
     private ViewPager pager;
@@ -98,18 +96,18 @@ public class GistsViewActivity extends PagerActivity implements
 
     private GistsPagerAdapter adapter;
 
-    private final UrlLauncher urlLauncher = new UrlLauncher(this);
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(layout.pager);
+        setContentView(R.layout.pager);
+
+        setSupportActionBar((android.support.v7.widget.Toolbar) findViewById(R.id.toolbar));
 
         gists = getStringArrayExtra(EXTRA_GIST_IDS);
         gist = getSerializableExtra(EXTRA_GIST);
         initialPosition = getIntExtra(EXTRA_POSITION);
-        pager = finder.find(id.vp_pages);
+        pager = finder.find(R.id.vp_pages);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -134,21 +132,22 @@ public class GistsViewActivity extends PagerActivity implements
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-        case android.R.id.home:
-            Intent intent = new Intent(this, GistsActivity.class);
-            intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP | FLAG_ACTIVITY_SINGLE_TOP);
-            startActivity(intent);
-            return true;
-        case id.m_delete:
-            String gistId = gists[pager.getCurrentItem()];
-            Bundle args = new Bundle();
-            args.putString(EXTRA_GIST_ID, gistId);
-            ConfirmDialogFragment.show(this, REQUEST_CONFIRM_DELETE,
-                    getString(string.confirm_gist_delete_title),
-                    getString(string.confirm_gist_delete_message), args);
-            return true;
-        default:
-            return super.onOptionsItemSelected(item);
+            case android.R.id.home:
+                finish();
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP | FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                return true;
+            case R.id.m_delete:
+                String gistId = gists[pager.getCurrentItem()];
+                Bundle args = new Bundle();
+                args.putString(EXTRA_GIST_ID, gistId);
+                ConfirmDialogFragment.show(this, REQUEST_CONFIRM_DELETE,
+                    getString(R.string.confirm_gist_delete_title),
+                    getString(R.string.confirm_gist_delete_message), args);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 
@@ -159,6 +158,9 @@ public class GistsViewActivity extends PagerActivity implements
             new DeleteGistTask(this, gistId).start();
             return;
         }
+
+        adapter.onDialogResult(pager.getCurrentItem(), requestCode, resultCode,
+            arguments);
 
         super.onDialogResult(requestCode, resultCode, arguments);
     }
@@ -174,7 +176,7 @@ public class GistsViewActivity extends PagerActivity implements
 
     @Override
     public void startActivity(Intent intent) {
-        Intent converted = urlLauncher.convert(intent);
+        Intent converted = UriLauncherActivity.convert(intent);
         if (converted != null)
             super.startActivity(converted);
         else
@@ -191,16 +193,16 @@ public class GistsViewActivity extends PagerActivity implements
         if (gist == null) {
             actionBar.setSubtitle(null);
             actionBar.setLogo(null);
-            actionBar.setIcon(drawable.app_icon);
+            actionBar.setIcon(R.drawable.app_icon);
         } else if (gist.getUser() != null) {
             avatars.bind(actionBar, gist.getUser());
             actionBar.setSubtitle(gist.getUser().getLogin());
         } else {
-            actionBar.setSubtitle(string.anonymous);
+            actionBar.setSubtitle(R.string.anonymous);
             actionBar.setLogo(null);
-            actionBar.setIcon(drawable.app_icon);
+            actionBar.setIcon(R.drawable.app_icon);
         }
-        actionBar.setTitle(getString(string.gist_title) + gistId);
+        actionBar.setTitle(getString(R.string.gist_title) + gistId);
     }
 
     @Override

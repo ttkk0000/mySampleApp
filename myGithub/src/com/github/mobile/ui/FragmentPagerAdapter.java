@@ -15,44 +15,93 @@
  */
 package com.github.mobile.ui;
 
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBarActivity;
 import android.view.ViewGroup;
 
-import com.actionbarsherlock.app.SherlockFragment;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Pager adapter that provides the current fragment
  */
 public abstract class FragmentPagerAdapter extends
-        android.support.v4.app.FragmentPagerAdapter implements FragmentProvider {
+    android.support.v4.app.FragmentPagerAdapter implements FragmentProvider {
 
-    private final SherlockFragmentActivity activity;
+    private final ActionBarActivity activity;
 
-    private SherlockFragment selected;
+    private final FragmentManager fragmentManager;
+
+    private Fragment selected;
+
+    private final Set<String> tags = new HashSet<>();
 
     /**
      * @param activity
      */
-    public FragmentPagerAdapter(SherlockFragmentActivity activity) {
+    public FragmentPagerAdapter(ActionBarActivity activity) {
         super(activity.getSupportFragmentManager());
 
+        fragmentManager = activity.getSupportFragmentManager();
         this.activity = activity;
     }
 
+    public FragmentPagerAdapter(Fragment fragment) {
+        super(fragment.getChildFragmentManager());
+
+        fragmentManager = fragment.getChildFragmentManager();
+        this.activity = (ActionBarActivity) fragment.getActivity();
+    }
+
+    public boolean isEmpty() {
+        return tags.isEmpty();
+    }
+
+    /**
+     * This methods clears any fragments that may not apply to the newly
+     * selected org.
+     *
+     * @return this adapter
+     */
+    public FragmentPagerAdapter clearAdapter() {
+        if (tags.isEmpty())
+            return this;
+
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        for (String tag : tags) {
+            Fragment fragment = fragmentManager.findFragmentByTag(tag);
+            if (fragment != null)
+                transaction.remove(fragment);
+        }
+        transaction.commit();
+        tags.clear();
+
+        return this;
+    }
+
     @Override
-    public SherlockFragment getSelected() {
+    public Fragment getSelected() {
         return selected;
+    }
+
+    public Object instantiateItem(ViewGroup container, int position) {
+        Object fragment = super.instantiateItem(container, position);
+        if (fragment instanceof Fragment)
+            tags.add(((Fragment) fragment).getTag());
+        return fragment;
     }
 
     @Override
     public void setPrimaryItem(final ViewGroup container, final int position,
-            final Object object) {
+        final Object object) {
         super.setPrimaryItem(container, position, object);
 
         boolean changed = false;
-        if (object instanceof SherlockFragment) {
+        if (object instanceof Fragment) {
             changed = object != selected;
-            selected = (SherlockFragment) object;
+            selected = (Fragment) object;
         } else {
             changed = object != null;
             selected = null;

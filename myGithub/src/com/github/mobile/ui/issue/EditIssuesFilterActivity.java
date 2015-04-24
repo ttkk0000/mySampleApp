@@ -19,6 +19,9 @@ import static android.view.View.GONE;
 import static com.github.mobile.Intents.EXTRA_ISSUE_FILTER;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CompoundButton;
@@ -27,14 +30,8 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
 import com.github.mobile.Intents.Builder;
-import com.github.mobile.R.id;
-import com.github.mobile.R.layout;
-import com.github.mobile.R.menu;
-import com.github.mobile.R.string;
+import com.github.mobile.R;
 import com.github.mobile.core.issue.IssueFilter;
 import com.github.mobile.ui.DialogFragmentActivity;
 import com.github.mobile.util.AvatarLoader;
@@ -63,7 +60,7 @@ public class EditIssuesFilterActivity extends DialogFragmentActivity {
      */
     public static Intent createIntent(IssueFilter filter) {
         return new Builder("repo.issues.filter.VIEW").add(EXTRA_ISSUE_FILTER,
-                filter).toIntent();
+            filter).toIntent();
     }
 
     private static final int REQUEST_LABELS = 1;
@@ -104,25 +101,27 @@ public class EditIssuesFilterActivity extends DialogFragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(layout.issues_filter_edit);
+        setContentView(R.layout.issues_filter_edit);
 
-        labelsText = finder.find(id.tv_labels);
-        milestoneText = finder.find(id.tv_milestone);
-        assigneeText = finder.find(id.tv_assignee);
-        avatarView = finder.find(id.iv_avatar);
+        labelsText = finder.find(R.id.tv_labels);
+        milestoneText = finder.find(R.id.tv_milestone);
+        assigneeText = finder.find(R.id.tv_assignee);
+        avatarView = finder.find(R.id.iv_avatar);
 
         if (savedInstanceState != null)
             filter = (IssueFilter) savedInstanceState
-                    .getSerializable(EXTRA_ISSUE_FILTER);
+                .getSerializable(EXTRA_ISSUE_FILTER);
 
         if (filter == null)
             filter = (IssueFilter) getIntent().getSerializableExtra(
-                    EXTRA_ISSUE_FILTER);
+                EXTRA_ISSUE_FILTER);
 
         final Repository repository = filter.getRepository();
 
+        setSupportActionBar((android.support.v7.widget.Toolbar) findViewById(R.id.toolbar));
+
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle(string.filter_issues_title);
+        actionBar.setTitle(R.string.filter_issues_title);
         actionBar.setSubtitle(repository.generateId());
         avatars.bind(actionBar, repository.getOwner());
 
@@ -131,14 +130,14 @@ public class EditIssuesFilterActivity extends DialogFragmentActivity {
             public void onClick(View v) {
                 if (assigneeDialog == null)
                     assigneeDialog = new AssigneeDialog(
-                            EditIssuesFilterActivity.this, REQUEST_ASSIGNEE,
-                            repository, collaborators);
+                        EditIssuesFilterActivity.this, REQUEST_ASSIGNEE,
+                        repository, collaborators);
                 assigneeDialog.show(filter.getAssignee());
             }
         };
 
-        findViewById(id.tv_assignee_label)
-                .setOnClickListener(assigneeListener);
+        findViewById(R.id.tv_assignee_label)
+            .setOnClickListener(assigneeListener);
         assigneeText.setOnClickListener(assigneeListener);
 
         OnClickListener milestoneListener = new OnClickListener() {
@@ -146,14 +145,14 @@ public class EditIssuesFilterActivity extends DialogFragmentActivity {
             public void onClick(View v) {
                 if (milestoneDialog == null)
                     milestoneDialog = new MilestoneDialog(
-                            EditIssuesFilterActivity.this, REQUEST_MILESTONE,
-                            repository, milestones);
+                        EditIssuesFilterActivity.this, REQUEST_MILESTONE,
+                        repository, milestones);
                 milestoneDialog.show(filter.getMilestone());
             }
         };
 
-        findViewById(id.tv_milestone_label)
-                .setOnClickListener(milestoneListener);
+        findViewById(R.id.tv_milestone_label)
+            .setOnClickListener(milestoneListener);
         milestoneText.setOnClickListener(milestoneListener);
 
         OnClickListener labelsListener = new OnClickListener() {
@@ -161,37 +160,37 @@ public class EditIssuesFilterActivity extends DialogFragmentActivity {
             public void onClick(View v) {
                 if (labelsDialog == null)
                     labelsDialog = new LabelsDialog(
-                            EditIssuesFilterActivity.this, REQUEST_LABELS,
-                            repository, labels);
+                        EditIssuesFilterActivity.this, REQUEST_LABELS,
+                        repository, labels);
                 labelsDialog.show(filter.getLabels());
             }
         };
 
-        findViewById(id.tv_labels_label)
-                .setOnClickListener(labelsListener);
+        findViewById(R.id.tv_labels_label)
+            .setOnClickListener(labelsListener);
         labelsText.setOnClickListener(labelsListener);
 
         updateAssignee();
         updateMilestone();
         updateLabels();
 
-        RadioButton openButton = (RadioButton) findViewById(id.rb_open);
+        RadioButton openButton = (RadioButton) findViewById(R.id.rb_open);
 
         openButton.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
             public void onCheckedChanged(CompoundButton buttonView,
-                    boolean isChecked) {
+                boolean isChecked) {
                 if (isChecked)
                     filter.setOpen(true);
             }
         });
 
-        RadioButton closedButton = (RadioButton) findViewById(id.rb_closed);
+        RadioButton closedButton = (RadioButton) findViewById(R.id.rb_closed);
 
         closedButton.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
             public void onCheckedChanged(CompoundButton buttonView,
-                    boolean isChecked) {
+                boolean isChecked) {
                 if (isChecked)
                     filter.setOpen(false);
             }
@@ -205,21 +204,21 @@ public class EditIssuesFilterActivity extends DialogFragmentActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu options) {
-        getSupportMenuInflater().inflate(menu.issue_filter, options);
+        getMenuInflater().inflate(R.menu.issue_filter, options);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-        case id.m_apply:
-            Intent intent = new Intent();
-            intent.putExtra(EXTRA_ISSUE_FILTER, filter);
-            setResult(RESULT_OK, intent);
-            finish();
-            return true;
-        default:
-            return super.onOptionsItemSelected(item);
+            case R.id.m_apply:
+                Intent intent = new Intent();
+                intent.putExtra(EXTRA_ISSUE_FILTER, filter);
+                setResult(RESULT_OK, intent);
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 
@@ -235,7 +234,7 @@ public class EditIssuesFilterActivity extends DialogFragmentActivity {
         if (selected != null)
             LabelDrawableSpan.setText(labelsText, selected);
         else
-            labelsText.setText(string.none);
+            labelsText.setText(R.string.none);
     }
 
     private void updateMilestone() {
@@ -243,7 +242,7 @@ public class EditIssuesFilterActivity extends DialogFragmentActivity {
         if (selected != null)
             milestoneText.setText(selected.getTitle());
         else
-            milestoneText.setText(string.none);
+            milestoneText.setText(R.string.none);
     }
 
     private void updateAssignee() {
@@ -253,7 +252,7 @@ public class EditIssuesFilterActivity extends DialogFragmentActivity {
             assigneeText.setText(selected.getLogin());
         } else {
             avatarView.setVisibility(GONE);
-            assigneeText.setText(string.assignee_anyone);
+            assigneeText.setText(R.string.assignee_anyone);
         }
     }
 
@@ -263,18 +262,18 @@ public class EditIssuesFilterActivity extends DialogFragmentActivity {
             return;
 
         switch (requestCode) {
-        case REQUEST_LABELS:
-            filter.setLabels(LabelsDialogFragment.getSelected(arguments));
-            updateLabels();
-            break;
-        case REQUEST_MILESTONE:
-            filter.setMilestone(MilestoneDialogFragment.getSelected(arguments));
-            updateMilestone();
-            break;
-        case REQUEST_ASSIGNEE:
-            filter.setAssignee(AssigneeDialogFragment.getSelected(arguments));
-            updateAssignee();
-            break;
+            case REQUEST_LABELS:
+                filter.setLabels(LabelsDialogFragment.getSelected(arguments));
+                updateLabels();
+                break;
+            case REQUEST_MILESTONE:
+                filter.setMilestone(MilestoneDialogFragment.getSelected(arguments));
+                updateMilestone();
+                break;
+            case REQUEST_ASSIGNEE:
+                filter.setAssignee(AssigneeDialogFragment.getSelected(arguments));
+                updateAssignee();
+                break;
         }
     }
 }

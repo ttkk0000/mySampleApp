@@ -21,11 +21,11 @@ import static com.github.mobile.Intents.EXTRA_ISSUE_FILTER;
 import static com.github.mobile.Intents.EXTRA_REPOSITORY;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.view.MenuItem;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.view.MenuItem;
 import com.github.mobile.Intents.Builder;
-import com.github.mobile.R.layout;
+import com.github.mobile.R;
 import com.github.mobile.core.issue.IssueFilter;
 import com.github.mobile.ui.DialogFragmentActivity;
 import com.github.mobile.util.AvatarLoader;
@@ -46,7 +46,7 @@ public class IssueBrowseActivity extends DialogFragmentActivity {
      */
     public static Intent createIntent(IssueFilter filter) {
         return new Builder("repo.issues.VIEW").repo(filter.getRepository())
-                .add(EXTRA_ISSUE_FILTER, filter).toIntent();
+            .add(EXTRA_ISSUE_FILTER, filter).toIntent();
     }
 
     private Repository repo;
@@ -60,7 +60,9 @@ public class IssueBrowseActivity extends DialogFragmentActivity {
 
         repo = getSerializableExtra(EXTRA_REPOSITORY);
 
-        setContentView(layout.repo_issue_list);
+        setContentView(R.layout.repo_issue_list);
+
+        setSupportActionBar((android.support.v7.widget.Toolbar) findViewById(R.id.toolbar));
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(repo.getName());
@@ -72,13 +74,13 @@ public class IssueBrowseActivity extends DialogFragmentActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-        case android.R.id.home:
-            Intent intent = FiltersViewActivity.createIntent();
-            intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP | FLAG_ACTIVITY_SINGLE_TOP);
-            startActivity(intent);
-            return true;
-        default:
-            return super.onOptionsItemSelected(item);
+            case android.R.id.home:
+                Intent intent = FiltersViewActivity.createIntent();
+                intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP | FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }

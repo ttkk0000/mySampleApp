@@ -17,21 +17,12 @@ package com.github.mobile.ui;
 
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabContentFactory;
-import android.widget.TabHost.TabSpec;
-import android.widget.TextView;
 
 import com.github.kevinsawicki.wishlist.ViewUtils;
-import com.github.mobile.R.drawable;
-import com.github.mobile.R.id;
-import com.github.mobile.R.layout;
-import com.github.mobile.util.TypefaceUtils;
+import com.github.mobile.R;
 
 /**
  * Activity with tabbed pages
@@ -39,7 +30,7 @@ import com.github.mobile.util.TypefaceUtils;
  * @param <V>
  */
 public abstract class TabPagerActivity<V extends PagerAdapter & FragmentProvider>
-        extends PagerActivity implements OnTabChangeListener, TabContentFactory {
+    extends PagerActivity implements OnTabChangeListener, TabContentFactory {
 
     /**
      * View pager
@@ -49,7 +40,7 @@ public abstract class TabPagerActivity<V extends PagerAdapter & FragmentProvider
     /**
      * Tab host
      */
-    protected TabHost host;
+    protected SlidingTabLayout slidingTabsLayout;
 
     /**
      * Pager adapter
@@ -59,13 +50,10 @@ public abstract class TabPagerActivity<V extends PagerAdapter & FragmentProvider
     @Override
     public void onPageSelected(final int position) {
         super.onPageSelected(position);
-
-        host.setCurrentTab(position);
     }
 
     @Override
     public void onTabChanged(String tabId) {
-        updateCurrentItem(host.getCurrentTab());
     }
 
     @Override
@@ -107,17 +95,17 @@ public abstract class TabPagerActivity<V extends PagerAdapter & FragmentProvider
      * @return this activity
      */
     protected TabPagerActivity<V> setGone(boolean gone) {
-        ViewUtils.setGone(host, gone);
+        ViewUtils.setGone(slidingTabsLayout, gone);
         ViewUtils.setGone(pager, gone);
         return this;
     }
 
     /**
      * Set current item to new position
-     * <p>
+     * <p/>
      * This is guaranteed to only be called when a position changes and the
      * current item of the pager has already been updated to the given position
-     * <p>
+     * <p/>
      * Sub-classes may override this method
      *
      * @param position
@@ -132,7 +120,7 @@ public abstract class TabPagerActivity<V extends PagerAdapter & FragmentProvider
      * @return layout resource id
      */
     protected int getContentView() {
-        return layout.pager_with_tabs;
+        return R.layout.pager_with_tabs;
     }
 
     private void updateCurrentItem(final int newPosition) {
@@ -148,50 +136,8 @@ public abstract class TabPagerActivity<V extends PagerAdapter & FragmentProvider
         pager.setAdapter(adapter);
     }
 
-    /**
-     * Create tab using information from current adapter
-     * <p>
-     * This can be called when the tabs changed but must be called after an
-     * initial call to {@link #configureTabPager()}
-     */
-    protected void createTabs() {
-        if (host.getTabWidget().getTabCount() > 0) {
-            // Crash on Gingerbread if tab isn't set to zero since adding a
-            // new tab removes selection state on the old tab which will be
-            // null unless the current tab index is the same as the first
-            // tab index being added
-            host.setCurrentTab(0);
-            host.clearAllTabs();
-        }
-
-        LayoutInflater inflater = getLayoutInflater();
-        int count = adapter.getCount();
-        for (int i = 0; i < count; i++) {
-            TabSpec spec = host.newTabSpec("tab" + i);
-            spec.setContent(this);
-            View view = inflater.inflate(layout.tab, null);
-            TextView icon = (TextView) view.findViewById(id.tv_icon);
-            String iconText = getIcon(i);
-            if (!TextUtils.isEmpty(iconText))
-                icon.setText(getIcon(i));
-            else
-                ViewUtils.setGone(icon, true);
-            TypefaceUtils.setOcticons(icon);
-            ((TextView) view.findViewById(id.tv_tab)).setText(getTitle(i));
-
-            spec.setIndicator(view);
-            host.addTab(spec);
-
-            int background;
-            if (i == 0)
-                background = drawable.tab_selector_right;
-            else if (i == count - 1)
-                background = drawable.tab_selector_left;
-            else
-                background = drawable.tab_selector_left_right;
-            ((ImageView) view.findViewById(id.iv_tab))
-                    .setImageResource(background);
-        }
+    public void updateTabs() {
+        slidingTabsLayout.setViewPager(pager);
     }
 
     /**
@@ -200,7 +146,7 @@ public abstract class TabPagerActivity<V extends PagerAdapter & FragmentProvider
     protected void configureTabPager() {
         if (adapter == null) {
             createPager();
-            createTabs();
+            updateTabs();
         }
     }
 
@@ -209,11 +155,18 @@ public abstract class TabPagerActivity<V extends PagerAdapter & FragmentProvider
         super.onCreate(savedInstanceState);
 
         setContentView(getContentView());
-        pager = (ViewPager) findViewById(id.vp_pages);
+
+        setSupportActionBar((android.support.v7.widget.Toolbar) findViewById(R.id.toolbar));
+
+        // On Lollipop, the action bar shadow is provided by default, so have to remove it explicitly
+        getSupportActionBar().setElevation(0);
+
+        pager = (ViewPager) findViewById(R.id.vp_pages);
         pager.setOnPageChangeListener(this);
-        host = (TabHost) findViewById(id.th_tabs);
-        host.setup();
-        host.setOnTabChangedListener(this);
+        slidingTabsLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs_layout);
+        slidingTabsLayout.setCustomTabView(R.layout.tab, R.id.tv_tab);
+        slidingTabsLayout.setSelectedIndicatorColors(getResources().getColor(android.R.color.white));
+        slidingTabsLayout.setDividerColors(0);
     }
 
     @Override

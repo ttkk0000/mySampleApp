@@ -21,10 +21,10 @@ import static com.github.mobile.Intents.EXTRA_REPOSITORY_OWNER;
 import static com.github.mobile.Intents.EXTRA_USER;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 
-import com.actionbarsherlock.app.ActionBar;
 import com.github.mobile.Intents.Builder;
-import com.github.mobile.R.string;
+import com.github.mobile.R;
 import com.github.mobile.ui.comment.CommentPreviewPagerAdapter;
 
 import org.eclipse.egit.github.core.Comment;
@@ -68,7 +68,7 @@ public class CreateCommentActivity extends
         super.onCreate(savedInstanceState);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle(getString(string.issue_title) + issueNumber);
+        actionBar.setTitle(getString(R.string.issue_title) + issueNumber);
         actionBar.setSubtitle(repositoryId.generateId());
         avatars.bind(actionBar, (User) getSerializableExtra(EXTRA_USER));
     }

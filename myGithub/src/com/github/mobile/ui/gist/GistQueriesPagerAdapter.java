@@ -18,8 +18,7 @@ package com.github.mobile.ui.gist;
 import android.content.res.Resources;
 import android.support.v4.app.Fragment;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.github.mobile.R.string;
+import com.github.mobile.R;
 import com.github.mobile.ui.FragmentPagerAdapter;
 
 /**
@@ -32,12 +31,12 @@ public class GistQueriesPagerAdapter extends FragmentPagerAdapter {
     /**
      * Create pager adapter
      *
-     * @param activity
+     * @param fragment
      */
-    public GistQueriesPagerAdapter(SherlockFragmentActivity activity) {
-        super(activity);
+    public GistQueriesPagerAdapter(Fragment fragment) {
+        super(fragment);
 
-        resources = activity.getResources();
+        resources = fragment.getResources();
     }
 
     @Override
@@ -48,28 +47,28 @@ public class GistQueriesPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         switch (position) {
-        case 0:
-            return new MyGistsFragment();
-        case 1:
-            return new StarredGistsFragment();
-        case 2:
-            return new PublicGistsFragment();
-        default:
-            return null;
+            case 0:
+                return new MyGistsFragment();
+            case 1:
+                return new StarredGistsFragment();
+            case 2:
+                return new PublicGistsFragment();
+            default:
+                return null;
         }
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
         switch (position) {
-        case 0:
-            return resources.getString(string.tab_mine);
-        case 1:
-            return resources.getString(string.tab_starred);
-        case 2:
-            return resources.getString(string.tab_all);
-        default:
-            return null;
+            case 0:
+                return resources.getString(R.string.tab_mine);
+            case 1:
+                return resources.getString(R.string.tab_starred);
+            case 2:
+                return resources.getString(R.string.tab_all);
+            default:
+                return null;
         }
     }
 }

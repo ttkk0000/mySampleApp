@@ -19,20 +19,17 @@ import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import static android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.text.Editable;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
-import com.github.mobile.R.drawable;
-import com.github.mobile.R.id;
-import com.github.mobile.R.layout;
-import com.github.mobile.R.menu;
-import com.github.mobile.R.string;
+import com.github.mobile.R;
 import com.github.mobile.ui.BaseActivity;
+import com.github.mobile.ui.MainActivity;
 import com.github.mobile.ui.TextWatcherAdapter;
 import com.github.mobile.util.ShareUtils;
 
@@ -57,16 +54,18 @@ public class CreateGistActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(layout.gist_create);
+        setContentView(R.layout.gist_create);
 
-        descriptionText = finder.find(id.et_gist_description);
-        nameText = finder.find(id.et_gist_name);
-        contentText = finder.find(id.et_gist_content);
-        publicCheckBox = finder.find(id.cb_public);
+        setSupportActionBar((android.support.v7.widget.Toolbar) findViewById(R.id.toolbar));
+
+        descriptionText = finder.find(R.id.et_gist_description);
+        nameText = finder.find(R.id.et_gist_name);
+        contentText = finder.find(R.id.et_gist_content);
+        publicCheckBox = finder.find(R.id.cb_public);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle(string.new_gist);
-        actionBar.setIcon(drawable.action_gist);
+        actionBar.setTitle(R.string.new_gist);
+        actionBar.setIcon(R.drawable.action_gist);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         String text = ShareUtils.getBody(getIntent());
@@ -99,8 +98,8 @@ public class CreateGistActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu options) {
-        getSupportMenuInflater().inflate(menu.gist_create, options);
-        createItem = options.findItem(id.m_apply);
+        getMenuInflater().inflate(R.menu.gist_create, options);
+        createItem = options.findItem(R.id.m_apply);
         updateCreateMenu();
         return true;
     }
@@ -108,17 +107,17 @@ public class CreateGistActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-        case id.m_apply:
-            createGist();
-            return true;
-        case android.R.id.home:
-            finish();
-            Intent intent = new Intent(this, GistsActivity.class);
-            intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP | FLAG_ACTIVITY_SINGLE_TOP);
-            startActivity(intent);
-            return true;
-        default:
-            return super.onOptionsItemSelected(item);
+            case R.id.m_apply:
+                createGist();
+                return true;
+            case android.R.id.home:
+                finish();
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP | FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 
@@ -127,11 +126,11 @@ public class CreateGistActivity extends BaseActivity {
 
         String enteredDescription = descriptionText.getText().toString().trim();
         final String description = enteredDescription.length() > 0 ? enteredDescription
-                : getString(string.gist_description_hint);
+            : getString(R.string.gist_description_hint);
 
         String enteredName = nameText.getText().toString().trim();
         final String name = enteredName.length() > 0 ? enteredName
-                : getString(string.gist_file_name_hint);
+            : getString(R.string.gist_file_name_hint);
 
         final String content = contentText.getText().toString();
 
