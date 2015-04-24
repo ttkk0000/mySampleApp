@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.7" icons="true" always-add-relationships="true" generalizations="true" realizations="true" 
+  associations="true" dependencies="true" nesting-relationships="true">  
+  <interface id="1" language="java" name="android.support.v4.view.ViewPropertyAnimatorListener" 
+    project="com.github.mobile" file="/com.github.mobile/libs/android-support-v4.jar" binary="true" 
+    corner="BOTTOM_RIGHT">    
+    <position height="116" width="232" x="390" y="3301"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="2" language="java" name="android.support.v4.view.ViewPropertyAnimatorListenerAdapter" 
+    project="com.github.mobile" file="/com.github.mobile/libs/android-support-v4.jar" binary="true" 
+    corner="BOTTOM_RIGHT">    
+    <position height="134" width="286" x="43" y="2677"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="android.support.v4.view.ViewPropertyAnimatorCompatKK" project="com.github.mobile" 
+    file="/com.github.mobile/libs/android-support-v4.jar" binary="true" corner="BOTTOM_RIGHT">    
+    <position height="98" width="396" x="48" y="985"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="android.support.v4.view.ViewPropertyAnimatorCompatICS" project="com.github.mobile" 
+    file="/com.github.mobile/libs/android-support-v4.jar" binary="true" corner="BOTTOM_RIGHT">    
+    <position height="584" width="316" x="390" y="2677"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="android.support.v4.view.ViewPropertyAnimatorCompat" project="com.github.mobile" 
+    file="/com.github.mobile/libs/android-support-v4.jar" binary="true" corner="BOTTOM_RIGHT">    
+    <position height="908" width="508" x="1123" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="android.support.v4.view.ViewPropertyAnimatorCompatJellybeanMr2" 
+    project="com.github.mobile" file="/com.github.mobile/libs/android-support-v4.jar" binary="true" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1513" y="2564"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="android.support.v4.view.ViewPropertyAnimatorCompatJB" project="com.github.mobile" 
+    file="/com.github.mobile/libs/android-support-v4.jar" binary="true" corner="BOTTOM_RIGHT">    
+    <position height="152" width="316" x="746" y="2677"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="8" language="java" name="android.support.v4.view.ViewPropertyAnimatorUpdateListener" 
+    project="com.github.mobile" file="/com.github.mobile/libs/android-support-v4.jar" binary="true" 
+    corner="BOTTOM_RIGHT">    
+    <position height="80" width="281" x="48" y="1789"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="9" language="java" 
+    name="android.support.v4.view.ViewPropertyAnimatorCompat.BaseViewPropertyAnimatorCompatImpl" 
+    project="com.github.mobile" file="/com.github.mobile/libs/android-support-v4.jar" binary="true" 
+    corner="BOTTOM_RIGHT">    
+    <position height="764" width="564" x="484" y="985"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" 
+    name="android.support.v4.view.ViewPropertyAnimatorCompat.ICSViewPropertyAnimatorCompatImpl" 
+    project="com.github.mobile" file="/com.github.mobile/libs/android-support-v4.jar" binary="true" 
+    corner="BOTTOM_RIGHT">    
+    <position height="656" width="484" x="597" y="1789"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" 
+    name="android.support.v4.view.ViewPropertyAnimatorCompat.JBMr2ViewPropertyAnimatorCompatImpl" 
+    project="com.github.mobile" file="/com.github.mobile/libs/android-support-v4.jar" binary="true" 
+    corner="BOTTOM_RIGHT">    
+    <position height="98" width="373" x="1123" y="2677"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" 
+    name="android.support.v4.view.ViewPropertyAnimatorCompat.KitKatViewPropertyAnimatorCompatImpl" 
+    project="com.github.mobile" file="/com.github.mobile/libs/android-support-v4.jar" binary="true" 
+    corner="BOTTOM_RIGHT">    
+    <position height="98" width="564" x="1239" y="3301"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" 
+    name="android.support.v4.view.ViewPropertyAnimatorCompat.JBViewPropertyAnimatorCompatImpl" 
+    project="com.github.mobile" file="/com.github.mobile/libs/android-support-v4.jar" binary="true" 
+    corner="BOTTOM_RIGHT">    
+    <position height="152" width="484" x="618" y="2485"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="14" language="java" 
+    name="android.support.v4.view.ViewPropertyAnimatorCompat.ViewPropertyAnimatorCompatImpl" project="com.github.mobile" 
+    file="/com.github.mobile/libs/android-support-v4.jar" binary="true" corner="BOTTOM_RIGHT">    
+    <position height="656" width="564" x="1163" y="1789"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <dependency id="15">    
+    <bendpoint x="359" y="1789"/>    
+    <bendpoint x="359" y="2485"/>    
+    <bendpoint x="359" y="2677"/>    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="16">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <nesting id="17">    
+    <bendpoint x="1132" y="985"/>    
+    <bendpoint x="1132" y="1789"/>    
+    <bendpoint x="1132" y="2485"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="11"/>  
+  </nesting>  
+  <nesting id="18">    
+    <bendpoint x="1757" y="985"/>    
+    <bendpoint x="1757" y="1789"/>    
+    <bendpoint x="1757" y="2485"/>    
+    <bendpoint x="1757" y="2677"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="12"/>  
+  </nesting>  
+  <nesting id="19">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="9"/>  
+  </nesting>  
+  <dependency id="20">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <dependency id="21">    
+    <bendpoint x="1092" y="2677"/>    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <nesting id="22">    
+    <bendpoint x="1111" y="985"/>    
+    <bendpoint x="1111" y="1789"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="13"/>  
+  </nesting>  
+  <generalization id="23">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
+  <dependency id="24">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="25">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <realization id="26">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="14"/>  
+  </realization>  
+  <generalization id="27">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="10"/>  
+  </generalization>  
+  <generalization id="28">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <dependency id="29">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <nesting id="30">    
+    <bendpoint x="1078" y="985"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="10"/>  
+  </nesting>  
+  <generalization id="31">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <realization id="32">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <association id="33">    
+    <bendpoint x="1153" y="985"/>    
+    <end type="SOURCE" refId="5" navigable="false" variant="ASSOCIATION">      
+      <attribute id="34" name="IMPL"/>      
+      <multiplicity id="35" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true" variant="ASSOCIATION"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="36">    
+    <bendpoint x="1174" y="985"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="14"/>  
+  </nesting>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.7" icons="true" always-add-relationships="true" generalizations="true" realizations="true" 
+  associations="true" dependencies="true" nesting-relationships="true">  
+  <class id="1" language="java" name="org.eclipse.egit.github.core.service.GitHubService" project="com.github.mobile" 
+    file="/com.github.mobile/libs/org.eclipse.egit.github.core-2.1.2.jar" binary="true" corner="BOTTOM_RIGHT">    
+    <position height="350" width="331" x="3743" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="org.eclipse.egit.github.core.service.PullRequestService" 
+    project="com.github.mobile" file="/com.github.mobile/libs/org.eclipse.egit.github.core-2.1.2.jar" binary="true" 
+    corner="BOTTOM_RIGHT">    
+    <position height="620" width="492" x="3211" y="427"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="org.eclipse.egit.github.core.service.CommitService" project="com.github.mobile" 
+    file="/com.github.mobile/libs/org.eclipse.egit.github.core-2.1.2.jar" binary="true" corner="BOTTOM_RIGHT">    
+    <position height="494" width="499" x="5060" y="427"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="org.eclipse.egit.github.core.service.OrganizationService" 
+    project="com.github.mobile" file="/com.github.mobile/libs/org.eclipse.egit.github.core-2.1.2.jar" binary="true" 
+    corner="BOTTOM_RIGHT">    
+    <position height="314" width="323" x="7488" y="427"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="org.eclipse.egit.github.core.service.CollaboratorService" 
+    project="com.github.mobile" file="/com.github.mobile/libs/org.eclipse.egit.github.core-2.1.2.jar" binary="true" 
+    corner="BOTTOM_RIGHT">    
+    <position height="188" width="322" x="4698" y="427"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="org.eclipse.egit.github.core.service.MilestoneService" project="com.github.mobile" 
+    file="/com.github.mobile/libs/org.eclipse.egit.github.core-2.1.2.jar" binary="true" corner="BOTTOM_RIGHT">    
+    <position height="404" width="352" x="2819" y="427"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="org.eclipse.egit.github.core.service.MarkdownService" project="com.github.mobile" 
+    file="/com.github.mobile/libs/org.eclipse.egit.github.core-2.1.2.jar" binary="true" corner="BOTTOM_RIGHT">    
+    <position height="224" width="371" x="2060" y="427"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="org.eclipse.egit.github.core.service.ContentsService" project="com.github.mobile" 
+    file="/com.github.mobile/libs/org.eclipse.egit.github.core-2.1.2.jar" binary="true" corner="BOTTOM_RIGHT">    
+    <position height="188" width="432" x="7016" y="427"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="org.eclipse.egit.github.core.service.OAuthService" project="com.github.mobile" 
+    file="/com.github.mobile/libs/org.eclipse.egit.github.core-2.1.2.jar" binary="true" corner="BOTTOM_RIGHT">    
+    <position height="224" width="308" x="2471" y="427"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="org.eclipse.egit.github.core.service.DeployKeyService" 
+    project="com.github.mobile" file="/com.github.mobile/libs/org.eclipse.egit.github.core-2.1.2.jar" binary="true" 
+    corner="BOTTOM_RIGHT">    
+    <position height="188" width="255" x="955" y="427"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="org.eclipse.egit.github.core.service.UserService" project="com.github.mobile" 
+    file="/com.github.mobile/libs/org.eclipse.egit.github.core-2.1.2.jar" binary="true" corner="BOTTOM_RIGHT">    
+    <position height="674" width="356" x="1250" y="427"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="org.eclipse.egit.github.core.service.EventService" project="com.github.mobile" 
+    file="/com.github.mobile/libs/org.eclipse.egit.github.core-2.1.2.jar" binary="true" corner="BOTTOM_RIGHT">    
+    <position height="620" width="500" x="5599" y="427"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="org.eclipse.egit.github.core.service.GistService" project="com.github.mobile" 
+    file="/com.github.mobile/libs/org.eclipse.egit.github.core-2.1.2.jar" binary="true" corner="BOTTOM_RIGHT">    
+    <position height="566" width="345" x="4292" y="427"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="org.eclipse.egit.github.core.service.DataService" project="com.github.mobile" 
+    file="/com.github.mobile/libs/org.eclipse.egit.github.core-2.1.2.jar" binary="true" corner="BOTTOM_RIGHT">    
+    <position height="368" width="399" x="42" y="427"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="org.eclipse.egit.github.core.service.DownloadService" project="com.github.mobile" 
+    file="/com.github.mobile/libs/org.eclipse.egit.github.core-2.1.2.jar" binary="true" corner="BOTTOM_RIGHT">    
+    <position height="458" width="509" x="3743" y="427"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="org.eclipse.egit.github.core.service.IssueService" project="com.github.mobile" 
+    file="/com.github.mobile/libs/org.eclipse.egit.github.core-2.1.2.jar" binary="true" corner="BOTTOM_RIGHT">    
+    <position height="1484" width="468" x="4292" y="1627"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="org.eclipse.egit.github.core.service.TeamService" project="com.github.mobile" 
+    file="/com.github.mobile/libs/org.eclipse.egit.github.core-2.1.2.jar" binary="true" corner="BOTTOM_RIGHT">    
+    <position height="368" width="315" x="6139" y="427"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="org.eclipse.egit.github.core.service.LabelService" project="com.github.mobile" 
+    file="/com.github.mobile/libs/org.eclipse.egit.github.core-2.1.2.jar" binary="true" corner="BOTTOM_RIGHT">    
+    <position height="386" width="374" x="1646" y="427"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="org.eclipse.egit.github.core.service.RepositoryService" 
+    project="com.github.mobile" file="/com.github.mobile/libs/org.eclipse.egit.github.core-2.1.2.jar" binary="true" 
+    corner="BOTTOM_RIGHT">    
+    <position height="1160" width="482" x="6494" y="427"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="org.eclipse.egit.github.core.service.WatcherService" project="com.github.mobile" 
+    file="/com.github.mobile/libs/org.eclipse.egit.github.core-2.1.2.jar" binary="true" corner="BOTTOM_RIGHT">    
+    <position height="422" width="434" x="481" y="427"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="21">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <dependency id="22">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <generalization id="23">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="24">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="25">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="26">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="27">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <dependency id="28">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <generalization id="29">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="30">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="31">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="32">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="33">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="34">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="35">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="36">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="37">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="38">    
+    <bendpoint x="4667" y="427"/>    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="39">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <dependency id="40">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <generalization id="41">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="42">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
