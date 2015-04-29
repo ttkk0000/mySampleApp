@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.7" icons="true" always-add-relationships="true" generalizations="true" realizations="true" 
+  associations="true" dependencies="true" nesting-relationships="true">  
+  <class id="1" language="java" name="com.example.android.customviews.charting.PieChart.PieView" project="custom_view" 
+    file="/custom_view/src/com/example/android/customviews/charting/PieChart.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="242" width="210" x="1242" y="1549"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="com.example.android.customviews.charting.PieChart" project="custom_view" 
+    file="/custom_view/src/com/example/android/customviews/charting/PieChart.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="1160" width="426" x="1263" y="175"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="com.example.android.customviews.charting.PieChart.GestureListener" 
+    project="custom_view" file="/custom_view/src/com/example/android/customviews/charting/PieChart.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="134" width="318" x="903" y="1375"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="com.example.android.customviews.charting.PieChart.PointerView" 
+    project="custom_view" file="/custom_view/src/com/example/android/customviews/charting/PieChart.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="98" width="210" x="1805" y="1375"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="com.example.android.customviews.charting.PieChart.Item" project="custom_view" 
+    file="/custom_view/src/com/example/android/customviews/charting/PieChart.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="206" width="210" x="317" y="2479"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="6" language="java" 
+    name="com.example.android.customviews.charting.PieChart.OnCurrentItemChangedListener" project="custom_view" 
+    file="/custom_view/src/com/example/android/customviews/charting/PieChart.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="80" width="255" x="41" y="1375"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="7" language="java" name="com.example.android.customviews.MainActivity" project="custom_view" 
+    file="/custom_view/src/com/example/android/customviews/MainActivity.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="98" width="170" x="1263" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="android.animation.ObjectAnimator" project="custom_view" 
+    file="/Users/tangkun/Public/adt-bundle-mac-x86_64-20140702/sdk/platforms/android-21/android.jar" binary="true" 
+    corner="BOTTOM_RIGHT">    
+    <position height="782" width="510" x="567" y="2479"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="android.animation.ValueAnimator" project="custom_view" 
+    file="/Users/tangkun/Public/adt-bundle-mac-x86_64-20140702/sdk/platforms/android-21/android.jar" binary="true" 
+    corner="BOTTOM_RIGHT">    
+    <position height="890" width="376" x="399" y="1549"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="android.view.GestureDetector" project="custom_view" 
+    file="/Users/tangkun/Public/adt-bundle-mac-x86_64-20140702/sdk/platforms/android-21/android.jar" binary="true" 
+    corner="BOTTOM_RIGHT">    
+    <position height="224" width="366" x="815" y="1549"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="android.widget.Scroller" project="com.github.mobile" 
+    file="/Users/tangkun/Public/adt-bundle-mac-x86_64-20140702/sdk/platforms/android-21/android.jar" binary="true" 
+    corner="BOTTOM_RIGHT">    
+    <position height="476" width="231" x="1492" y="1549"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="android.graphics.Paint" project="custom_view" 
+    file="/Users/tangkun/Public/adt-bundle-mac-x86_64-20140702/sdk/platforms/android-21/android.jar" binary="true" 
+    corner="BOTTOM_RIGHT">    
+    <position height="2006" width="325" x="2036" y="2479"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="android.graphics.RectF" project="custom_view" 
+    file="/Users/tangkun/Public/adt-bundle-mac-x86_64-20140702/sdk/platforms/android-21/android.jar" binary="true" 
+    corner="BOTTOM_RIGHT">    
+    <position height="836" width="235" x="1744" y="2479"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="14">    
+    <bendpoint x="1386" y="1375"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="15" name="mScroller"/>      
+      <multiplicity id="16" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="17">    
+    <bendpoint x="1930" y="1549"/>    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <association id="18">    
+    <bendpoint x="2087" y="1375"/>    
+    <bendpoint x="2087" y="1549"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="19" name="mShadowPaint"/>      
+      <multiplicity id="20" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="21">    
+    <bendpoint x="368" y="1375"/>    
+    <bendpoint x="368" y="1549"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="22" name="mAutoCenterAnimator"/>      
+      <multiplicity id="23" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="24">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="3"/>  
+  </nesting>  
+  <association id="25">    
+    <bendpoint x="1251" y="1375"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="26" name="mPieView"/>      
+      <multiplicity id="27" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="28">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="29" name="mBounds"/>      
+      <multiplicity id="30" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="31">    
+    <bendpoint x="326" y="1375"/>    
+    <bendpoint x="326" y="1549"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="32" name="mData"/>      
+      <multiplicity id="33" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="34">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <association id="35">    
+    <bendpoint x="2045" y="1375"/>    
+    <bendpoint x="2045" y="1549"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="36" name="mTextPaint"/>      
+      <multiplicity id="37" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="38">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <nesting id="39">    
+    <bendpoint x="347" y="1375"/>    
+    <bendpoint x="347" y="1549"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="5"/>  
+  </nesting>  
+  <dependency id="40">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <dependency id="41">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <association id="42">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="43" name="mPointerView"/>      
+      <multiplicity id="44" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="45">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="10"/>  
+  </dependency>  
+  <dependency id="46">    
+    <bendpoint x="1211" y="1549"/>    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="13"/>  
+  </dependency>  
+  <association id="47">    
+    <bendpoint x="1753" y="1375"/>    
+    <bendpoint x="1753" y="1549"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="48" name="mShadowBounds"/>      
+      <multiplicity id="49" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="50">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </nesting>  
+  <association id="51">    
+    <bendpoint x="840" y="1375"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="52" name="mScrollAnimator"/>      
+      <multiplicity id="53" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="54">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <nesting id="55">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="6"/>  
+  </nesting>  
+  <dependency id="56">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <association id="57">    
+    <bendpoint x="872" y="1375"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="58" name="mDetector"/>      
+      <multiplicity id="59" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="60">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="61" name="mCurrentItemChangedListener"/>      
+      <multiplicity id="62" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="63">    
+    <bendpoint x="1774" y="1375"/>    
+    <bendpoint x="1774" y="1549"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="64" name="mPieBounds"/>      
+      <multiplicity id="65" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="66">    
+    <bendpoint x="1272" y="1375"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </nesting>  
+  <generalization id="67">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <association id="68">    
+    <bendpoint x="2066" y="1375"/>    
+    <bendpoint x="2066" y="1549"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="69" name="mPiePaint"/>      
+      <multiplicity id="70" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
