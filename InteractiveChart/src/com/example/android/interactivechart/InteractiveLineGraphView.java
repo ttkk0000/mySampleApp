@@ -69,7 +69,8 @@ import android.widget.OverScroller;
  * view's content for vision-impaired users.
  */
 public class InteractiveLineGraphView extends View {
-    private static final String TAG = "InteractiveLineGraphView";
+    @SuppressWarnings("unused")
+	private static final String TAG = "InteractiveLineGraphView";
 
     /**
      * The number of individual points (samples) in the chart series to draw onscreen.
