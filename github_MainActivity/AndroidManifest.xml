@@ -17,6 +17,7 @@
         android:normalScreens="true"
         android:smallScreens="true"
         android:xlargeScreens="true" />
+    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="21"/>
 
     <application
         android:allowBackup="true"
@@ -24,6 +25,7 @@
         android:icon="@drawable/app_icon"
         android:label="@string/app_name"
         android:theme="@style/Theme.GitHub">
+        <!-- 1 hardwareAccelerated="true" -->
         <activity
             android:name=".ui.MainActivity"
             android:theme="@style/Theme.GitHub.NavigationDrawer"
@@ -39,6 +41,7 @@
                 android:name="android.app.default_searchable"
                 android:value=".ui.search.SearchActivity" />
         </activity>
+        <!-- 1 hardwareAccelerated="false" -->
         <activity
             android:name=".ui.gist.CreateGistActivity"
             android:configChanges="orientation|keyboardHidden|screenSize">
@@ -50,6 +53,7 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
+        <!-- 2 hardwareAccelerated="true" -->
         <activity
             android:name=".ui.issue.IssueBrowseActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -64,6 +68,7 @@
                 android:name="android.app.default_searchable"
                 android:value=".ui.issue.IssueSearchActivity" />
         </activity>
+        <!-- 2 hardwareAccelerated="false" -->
         <activity
             android:name=".ui.issue.EditIssuesFilterActivity"
             android:configChanges="orientation|keyboardHidden|screenSize">
@@ -73,6 +78,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <!-- 3 hardwareAccelerated="false" -->
         <activity
             android:name=".ui.issue.EditIssueActivity"
             android:configChanges="orientation|keyboardHidden|screenSize">
@@ -82,6 +88,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <!-- 3 hardwareAccelerated="true" -->
         <activity
             android:name=".ui.search.SearchActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -96,6 +103,7 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable_repos_users" />
         </activity>
+        <!-- 4 hardwareAccelerated="true" -->
         <activity
             android:name=".ui.issue.FiltersViewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -106,6 +114,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <!-- 4 hardwareAccelerated="false" -->
         <activity
             android:name=".ui.gist.GistsViewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize">
@@ -115,6 +124,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <!-- 5 hardwareAccelerated="false" -->
         <activity
             android:name=".ui.gist.GistFilesViewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize">
@@ -124,6 +134,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <!-- 6 hardwareAccelerated="false" -->
         <activity
             android:name=".ui.issue.CreateCommentActivity"
             android:configChanges="orientation|keyboardHidden|screenSize">
@@ -133,6 +144,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <!-- 7 hardwareAccelerated="false" -->
         <activity
             android:name=".ui.issue.EditCommentActivity"
             android:configChanges="orientation|keyboardHidden|screenSize">
@@ -142,6 +154,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <!-- 8 hardwareAccelerated="false" -->
         <activity
             android:name=".ui.gist.CreateCommentActivity"
             android:configChanges="orientation|keyboardHidden|screenSize">
@@ -151,6 +164,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <!-- 9 hardwareAccelerated="false" -->
         <activity
             android:name=".ui.gist.EditCommentActivity"
             android:configChanges="orientation|keyboardHidden|screenSize">
@@ -160,6 +174,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <!-- 10 hardwareAccelerated="false" -->
         <activity
             android:name=".ui.commit.CreateCommentActivity"
             android:configChanges="orientation|keyboardHidden|screenSize">
@@ -169,6 +184,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <!-- 5 hardwareAccelerated="true" -->
         <activity
             android:name=".ui.repo.RepositoryViewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -183,6 +199,7 @@
                 android:name="android.app.default_searchable"
                 android:value=".ui.issue.IssueSearchActivity" />
         </activity>
+        <!-- 6 hardwareAccelerated="true" -->
         <activity
             android:name=".ui.repo.RepositoryContributorsActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -193,6 +210,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <!-- 7 hardwareAccelerated="true" -->
         <activity
             android:name=".ui.user.UserViewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -203,6 +221,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <!-- 11 hardwareAccelerated="false" -->
         <activity
             android:name=".ui.issue.IssuesViewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize">
@@ -225,7 +244,7 @@
                 android:name="android.accounts.AccountAuthenticator"
                 android:resource="@xml/authenticator" />
         </service>
-
+	    <!-- 12 hardwareAccelerated="false" -->
         <activity
             android:name=".accounts.LoginActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -236,6 +255,7 @@
                 someone who explicitly knows the class name
             -->
         </activity>
+        <!-- 13 hardwareAccelerated="false" -->
         <activity
             android:name=".accounts.TwoFactorAuthActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -246,6 +266,7 @@
                 someone who explicitly knows the class name
             -->
         </activity>
+        <!-- 14 hardwareAccelerated="false" -->
         <activity
             android:name=".ui.user.UriLauncherActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -287,6 +308,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <!-- 8 hardwareAccelerated="true" -->
         <activity
             android:name=".ui.issue.IssueSearchActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -301,6 +323,7 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable_issues" />
         </activity>
+        <!-- 15 hardwareAccelerated="false" -->
         <activity
             android:name=".ui.commit.CommitCompareViewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -311,6 +334,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <!-- 16 hardwareAccelerated="false" -->
         <activity
             android:name=".ui.commit.CommitViewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize">
@@ -320,6 +344,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <!-- 17 hardwareAccelerated="false" -->
         <activity
             android:name=".ui.commit.CommitFileViewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize">
@@ -329,6 +354,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <!-- 18 hardwareAccelerated="false" -->
         <activity
             android:name=".ui.ref.BranchFileViewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize">

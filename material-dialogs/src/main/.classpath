@@ -2,12 +2,16 @@
 <classpath>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
+	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
+<<<<<<< HEAD
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="lib" path="libs/android-support-annotations.jar"/>
 	<classpathentry kind="lib" path="libs/android-support-v4.jar"/>
 	<classpathentry kind="lib" path="libs/android-support-v7-appcompat.jar"/>
 	<classpathentry kind="lib" path="libs/android-support-v7-recyclerview.jar"/>
+=======
+>>>>>>> bc698eea689494ba896904eb64342c7ab34b181d
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
